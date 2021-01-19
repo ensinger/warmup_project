@@ -36,3 +36,10 @@ I made a class for drawSquare
   - the robot drifts over time, so I would like to figure out where it is pointing
   and better control the turns to be exactly 90 degrees and the moves to be exactly
   the same distance.
+
+  - I had trouble getting the rosbag to upload in git at first. It created a 400MB
+    file. I had to clear out the workspace, and reclone, and restore to undo the
+    bit commit.
+
+  - the gif for this is !draw_square.gif
+
