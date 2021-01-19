@@ -41,5 +41,5 @@ I made a class for drawSquare
     file. I had to clear out the workspace, and reclone, and restore to undo the
     bit commit.
 
-  - the gif for this is !draw_square.gif
+  - the gif for this is !(draw_square.gif)
 
