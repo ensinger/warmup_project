@@ -105,17 +105,47 @@ of it at lidardata location 0. then it will stop, and switch states to
 turn left again.
 
 ## process_scan
-The process_scan function looks determines which state the robot is in
+The process_scan function determines which state the robot is in
 as described above and then publishes the data to the correct function
 for handeling what must happen according to the state the robot is in.
 
-[The robot running wall_follow.py] ![](wall_follower.gif)
+![The robot running wall_follow.py](wall_follower.gif)
 
-##Challenges
+
+# Person Follower
+# person_follower.py A person Following rospy program
+
+The structure of my person follower is to have a subscriber for the scan
+that receives LaserScanner data objects and responds with a
+process_scan function, which calls a follow_person function. 
+
+## follow_person
+Follow person has the robot convert data.ranges to an numpy array and
+then finds the minimum of the range_data to determine the closest
+object detected by the laser scanner. Then, I set mindir to
+argmin(range_data) to find which element is the minimum and therefore
+locate the direction of the object/person. If this direction is less
+than 180 degrees it turns left by setting the angular velocity to be
+positive. Othersise, it turns right by setting the angular velocity to
+be negative. If the robot is far enough from the object/person to keep
+going, it goes towards it by setting my linear velocity to the
+variable called speed. If it is close enough to the
+person (less than or equal to my distance variable), then it stops by
+setting the linear velocity to zero.
+
+## process_scan
+My process scan function publishes the data to the follow person function.
+
+
+![The robot running person_follower.py](person_follower.gif)
+
+
+## Challenges
 The biggest challenges were figuring out how to
 1. read the lidar data
 2. find an error signal for proportional feedback to follow the wall
 3. make the control stable, and not go out of control.
+4. array manipulation, like finding argmin to get direction of person
 Reading the Lidar data was overcome by reading some resources  and
 looking at the example from class. The error signal was hard to find
 that was stable. I first tried just the distance from the wall, but
@@ -123,14 +153,18 @@ this would only work sometimes. Looking at the drawing in the class
 webpage, the three vectors shown gave me the idea to check at the
 side, and 45 degrees in front and behind the robot. This took a long
 time to figure out. Making it stable just took some fiddling with the
-speeds to find something that worked well.
+speeds to find something that worked well. With some searching, I
+found that numpy has many ways to easily manipulate arrays, so I used
+numpy arrays for things like argmin.
 
-##Future Work
+## Future Work
 If I had more time, I would maybe try to implement PID control, with
 proportional, integral and derivative feedback, I would also try to
-make some other walls to follow.
+make some other walls to follow in the wall follower routine, and some
+moving objects in the person follower routine, rather than doing this
+with the mouse.
 
-##Takeaways
+## Takeaways
 - proportional feedback works well once you find the right error
 This took some time to figure out but once I got a good error signal,
 it was pretty stable. It was helpful to have the class example
@@ -146,3 +180,9 @@ introduction to building video games, we had
 code examples that gave the overall structure. Over time, we had to
 make the skeletons ourselves. This was **really** helpful. Some more
 coding examples would be helpful.
+
+- 
+- 
+- 
+
+
