@@ -109,7 +109,7 @@ The process_scan function looks determines which state the robot is in
 as described above and then publishes the data to the correct function
 for handeling what must happen according to the state the robot is in.
 
-[The robot running wall_follow.py] ![](wall_follow.gif)
+[The robot running wall_follow.py] ![](wall_follower.gif)
 
 ##Challenges
 The biggest challenges were figuring out how to
